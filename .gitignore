@@ -1,0 +1,7 @@
+# generated
+/build
+/out
+/.gradle
+
+# personal setting
+.idea
