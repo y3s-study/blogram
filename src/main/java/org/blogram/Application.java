@@ -1,4 +1,4 @@
-package com.y3j.blogram;
+package org.blogram;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

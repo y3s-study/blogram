@@ -1,4 +1,4 @@
-package com.y3j.blogram.webservice;
+package org.blogram.webservice;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
