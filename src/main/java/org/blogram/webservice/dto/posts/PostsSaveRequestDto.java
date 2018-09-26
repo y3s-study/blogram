@@ -13,7 +13,7 @@ public class PostsSaveRequestDto {
     private String title;
     private String content;
     private String author;
-	private int test;
+//	private int test;
 
     public Posts toEntity(){
         return Posts.builder()
