@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>member test</title>
+</head>
+<body>
+<h2>Member list test page</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each members}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+</body>
+</html>

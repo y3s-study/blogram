@@ -24,13 +24,12 @@ repositories {
 	mavenCentral()
 }
 
-ext['hibernate.version'] = '5.2.11.Final'
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
+	compile('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0')
+	runtime('mysql:mysql-connector-java')
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

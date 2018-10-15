@@ -1,5 +1,37 @@
 spring:
-    h2:
-        console:
-            enabled: true
+  profiles:
+    active: local
 
+---
+# local 프로파일
+spring:
+  profiles: local
+
+  # Data source 설정
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blogram
+    username: blogramuser
+    password: blogrampass
+    initialization-mode: always
+
+  # JPA(Hibernate) 설정
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.format_sql: true
+    show_sql: true
+
+# logging level 설정
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+---
+# test 프로파일
+spring:
+  profiles: test
+
+  datasource:
+    initialization-mode: never
