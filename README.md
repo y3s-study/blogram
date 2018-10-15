@@ -6,7 +6,7 @@
   - 회원가입
   - 인증(로그인, 로그아웃)
   - 패스워드 찾기(메일로 임시 비밀번호 전달)
-  - 프로필 관리
+  - [프로필 관리](https://github.com/y3s-study/blogram/wiki/%ED%94%84%EB%A1%9C%ED%95%84-%EA%B4%80%EB%A6%AC)
   - [개인별 테마 관리 기능 (Navigation bar 위치 변경 or 배경색 변경)](https://github.com/y3s-study/blogram/wiki/Navigation-bar-%ED%85%9C%ED%94%8C%EB%A6%BF)
   - 채팅
   - 친구 맺기
