@@ -1,5 +1,6 @@
 package org.blogram.repository.post;
 
+import org.blogram.domain.category.Category;
 import org.blogram.domain.member.Member;
 import org.blogram.domain.post.Post;
 import org.junit.Test;
@@ -25,15 +26,9 @@ public class PostRepositoryTest {
 	@Test
 	public void testFindById() {
 		// given
-		Member testUser = Member.builder()
-				.name("testUser")
-				.email("test@test.com")
-				.password("password")
-				.birthDate(LocalDate.now())
-				.build();
-
-		testEntityManager.persist(testUser);
-		Post post = Post.create("title", "content", testUser);
+		Member testUser = testMember();
+		Category testCategory = testCategory(testUser);
+		Post post = Post.create("title", "content", testUser, testCategory);
 		Post persistedPost = testEntityManager.persist(post);
 
 		// when
@@ -49,5 +44,21 @@ public class PostRepositoryTest {
 			assertThat(foundPost.getCreatedDate()).isNotNull();
 			assertThat(foundPost.getModifiedDate()).isNotNull();
 		});
+	}
+
+	private Category testCategory(Member testUser) {
+		Category testCategory = Category.create("testCategory", testUser, null);
+		return testEntityManager.persist(testCategory);
+	}
+
+	private Member testMember() {
+		Member testUser = Member.builder()
+				.name("testUser")
+				.email("test@test.com")
+				.password("password")
+				.birthDate(LocalDate.now())
+				.build();
+
+		return testEntityManager.persist(testUser);
 	}
 }
