@@ -1,9 +1,6 @@
 package org.blogram.domain.member;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.blogram.domain.common.BaseEntity;
 import org.blogram.domain.role.Role;
 
@@ -16,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "member")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

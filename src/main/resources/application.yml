@@ -28,6 +28,9 @@ logging:
   level:
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
+handlebars:
+  expose-request-attributes: true
+
 ---
 # test 프로파일
 spring:

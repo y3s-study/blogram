@@ -8,6 +8,7 @@ import org.blogram.repository.category.CategoryRepository;
 import org.blogram.repository.member.MemberRepository;
 import org.blogram.repository.post.PostRepository;
 import org.blogram.repository.role.RoleRepository;
+import org.blogram.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,14 +29,17 @@ public class InitialDataLoader implements ApplicationRunner {
 	private final MemberRepository memberRepository;
 	private final PostRepository postRepository;
 	private final CategoryRepository categoryRepository;
+	private final MemberService memberService;
 
 	@Autowired
 	public InitialDataLoader(RoleRepository roleRepository, MemberRepository memberRepository,
-	                         PostRepository postRepository, CategoryRepository categoryRepository) {
+	                         PostRepository postRepository, CategoryRepository categoryRepository,
+							 MemberService memberService) {
 		this.roleRepository = roleRepository;
 		this.memberRepository = memberRepository;
 		this.postRepository = postRepository;
 		this.categoryRepository = categoryRepository;
+		this.memberService = memberService;
 	}
 
 	@Override
@@ -54,8 +58,10 @@ public class InitialDataLoader implements ApplicationRunner {
 		Member user = Member.builder().name("user").email("user@blogram.org").password("user").birthDate(LocalDate.now()).build();
 		user.addRole(userRole);
 
-		List<Member> members = Arrays.asList(admin, user);
-		memberRepository.saveAll(members);
+//		List<Member> members = Arrays.asList(admin, user);
+//		memberRepository.saveAll(members);
+		memberService.save(admin);
+		memberService.save(user);
 
 		Category programmingCategory = Category.create("programming", user, null);
 		categoryRepository.save(programmingCategory);

@@ -1,0 +1,16 @@
+<div id="login">
+    <div class="login-box shadow">
+        <form action="/login" method='post' class='login-form'>
+            <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+            <i id='username-input-icon' class='icon-user'></i>
+            <input id="username" autocomplete="off" placeholder="Username" class='dark' type="text" name="username">
+
+            <i id='password-input-icon' class='icon-lock'></i>
+            <input id="password" autocomplete="off" placeholder="Password" class='dark' type="password" name="password">
+
+            <input type="submit" class='button large' value="Please, login to continue.">
+
+        </form>
+
+    </div>
+</div>
