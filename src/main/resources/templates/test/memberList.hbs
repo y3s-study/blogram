@@ -1,29 +1,24 @@
-<!doctype html>
-<html>
-<head>
-    <title>member test</title>
-</head>
-<body>
-<h2>Member list test page</h2>
+{{#partial "body"}}
+    <h2>Member list test page</h2>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>email</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#each members}}
+    <table border="1">
+        <thead>
         <tr>
-            <td>{{id}}</td>
-            <td>{{name}}</td>
-            <td>{{email}}</td>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
         </tr>
-    {{/each}}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        {{#each members}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/partial}}
 
-</body>
-</html>
+{{> layout}}
