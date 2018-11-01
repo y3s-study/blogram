@@ -5,7 +5,6 @@ import org.blogram.domain.member.Member;
 import org.blogram.domain.post.Post;
 import org.blogram.domain.role.Role;
 import org.blogram.repository.category.CategoryRepository;
-import org.blogram.repository.member.MemberRepository;
 import org.blogram.repository.post.PostRepository;
 import org.blogram.repository.role.RoleRepository;
 import org.blogram.service.member.MemberService;
@@ -16,8 +15,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 로컬 개발에 필요한 테스트 데이터를 로드한다.
@@ -26,17 +23,14 @@ import java.util.List;
 @Component
 public class InitialDataLoader implements ApplicationRunner {
 	private final RoleRepository roleRepository;
-	private final MemberRepository memberRepository;
 	private final PostRepository postRepository;
 	private final CategoryRepository categoryRepository;
 	private final MemberService memberService;
 
 	@Autowired
-	public InitialDataLoader(RoleRepository roleRepository, MemberRepository memberRepository,
-	                         PostRepository postRepository, CategoryRepository categoryRepository,
-							 MemberService memberService) {
+	public InitialDataLoader(RoleRepository roleRepository, PostRepository postRepository,
+	                         CategoryRepository categoryRepository, MemberService memberService) {
 		this.roleRepository = roleRepository;
-		this.memberRepository = memberRepository;
 		this.postRepository = postRepository;
 		this.categoryRepository = categoryRepository;
 		this.memberService = memberService;
@@ -58,8 +52,6 @@ public class InitialDataLoader implements ApplicationRunner {
 		Member user = Member.builder().name("user").email("user@blogram.org").password("user").birthDate(LocalDate.now()).build();
 		user.addRole(userRole);
 
-//		List<Member> members = Arrays.asList(admin, user);
-//		memberRepository.saveAll(members);
 		memberService.save(admin);
 		memberService.save(user);
 
