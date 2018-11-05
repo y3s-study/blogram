@@ -61,7 +61,8 @@ public class InitialDataLoader implements ApplicationRunner {
 		Category javaCategory = Category.create("java", user, programmingCategory);
 		categoryRepository.save(javaCategory);
 
-		Post testPost = Post.create("test post", "blah blah ~", user, javaCategory);
-		postRepository.save(testPost);
+		postRepository.save(Post.create("First post", "blah blah ~", user, javaCategory));
+		postRepository.save(Post.create("Second Post", "adsf asdf zxcv qwer", user, javaCategory));
+		postRepository.save(Post.create("Third Post", "adsf asdf zxcv qwer", admin, javaCategory));
 	}
 }
