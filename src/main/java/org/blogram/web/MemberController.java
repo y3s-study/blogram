@@ -13,10 +13,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    static final String VIEW = "/member";
+    static private final String VIEW = "/member";
 
     @Autowired
-    MemberService memberService;
+    private MemberService memberService;
 
     /**
      * post 페이지 이동
@@ -35,7 +35,7 @@ public class MemberController {
     }
 
     /**
-     * 회원 포트트 정보 가져오기
+     * 회원 포스트 정보 가져오기
      **/
     @PostMapping("/postList")
     @ResponseBody

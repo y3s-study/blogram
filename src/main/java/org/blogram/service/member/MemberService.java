@@ -4,6 +4,7 @@ import org.blogram.domain.member.Member;
 import org.blogram.domain.member.PostListRq;
 import org.blogram.domain.member.PostListRs;
 import org.blogram.repository.member.MemberRepository;
+import org.blogram.repository.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class MemberService implements UserDetailsService {
 
 	private MemberRepository memberRepository;
+	private PostRepository postRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -56,7 +58,7 @@ public class MemberService implements UserDetailsService {
      **/
     public PostListRs postList(PostListRq postListRq) {
         PostListRs postListRs = new PostListRs();
-
+		postRepository.findById(postListRq.getMemberId());
         return postListRs;
     }
 }

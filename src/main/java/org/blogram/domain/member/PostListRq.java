@@ -9,5 +9,5 @@ import lombok.Setter;
  * 멤버 포스트 리스트 Rq
  **/
 public class PostListRq {
-    private String email;
+    private Integer memberId;
 }
