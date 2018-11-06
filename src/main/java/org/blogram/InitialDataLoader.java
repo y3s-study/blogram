@@ -7,6 +7,7 @@ import org.blogram.domain.role.Role;
 import org.blogram.repository.category.CategoryRepository;
 import org.blogram.repository.post.PostRepository;
 import org.blogram.repository.role.RoleRepository;
+import org.blogram.service.member.MemberDto;
 import org.blogram.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -45,7 +46,7 @@ public class InitialDataLoader implements ApplicationRunner {
 		Role adminRole = roleRepository.save(Role.create("ADMIN"));
 		Role userRole = roleRepository.save(Role.create("USER"));
 
-		Member admin = Member.builder().name("admin").email("admin@blogram.org").password("admin").birthDate(LocalDate.now()).build();
+        Member admin = Member.builder().name("admin").email("admin@blogram.org").password("admin").birthDate(LocalDate.now()).build();
 		admin.addRole(adminRole);
 		admin.addRole(userRole);
 
