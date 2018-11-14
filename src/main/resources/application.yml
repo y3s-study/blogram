@@ -12,7 +12,6 @@ spring:
 
   # Data source 설정
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blogram
     username: blogramuser
     password: blogrampass
@@ -33,6 +32,7 @@ logging:
 
 handlebars:
   expose-request-attributes: true
+  cache: false
 
 ---
 # test 프로파일
