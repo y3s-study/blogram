@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    static private final String VIEW = "/member";
+    private static final String VIEW = "/member";
 
     @Autowired
     private PostService postService;
@@ -27,9 +27,9 @@ public class MemberController {
      **/
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
-        List<PostDto> myPosts = postService.getMyPosts(principal);
+        List<PostDto> memberPosts = postService.getMemberPosts(principal.getName());
         model.addAttribute("loginUser", principal);
-        model.addAttribute("myPosts", myPosts);
+        model.addAttribute("memberPosts", memberPosts);
         return VIEW + "/home";
     }
 }

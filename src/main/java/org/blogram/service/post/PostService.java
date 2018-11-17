@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -33,11 +32,11 @@ public class PostService {
 	/**
      * 내 포스트 정보 가져오기
      */
-    public List<PostDto> getMyPosts(Principal principal) {
-        List<Post> recentPosts = postRepository.findAll();
+    public List<PostDto> getMemberPosts(String name) {
+        List<Post> memberPosts = postRepository.findByMemberName(name);
 
-        return asStream(recentPosts).map(PostDto::createFromEntity)
-                .filter(postDto -> postDto.getAuthorName().equals(principal.getName()))
+        return asStream(memberPosts)
+                .map(PostDto::createFromEntity)
                 .collect(toList());
     }
 }

@@ -2,7 +2,6 @@ package org.blogram.service.member;
 
 import org.blogram.domain.member.Member;
 import org.blogram.repository.member.MemberRepository;
-import org.blogram.repository.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 public class MemberService {
 
 	private MemberRepository memberRepository;
-	private PostRepository postRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
