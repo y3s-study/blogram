@@ -37,7 +37,13 @@
 - JUnit
 - [OAuth](https://github.com/y3s-study/blogram/wiki/OAuth-(Open-Authorization))
 
+## 개발환경 설정 방법
+- [참조](https://github.com/y3s-study/blogram/wiki/%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95)
+
 ## 기간
 - 2018.09 ~ 2019.01
-- 9월 21일 : [1차 회의](https://github.com/y3s-study/blogram/wiki/2018-09-21-%ED%9A%8C%EC%9D%98%EB%A1%9D)
-- 10월 9일 : 2차 회의 예정
+  - [회의록](https://github.com/y3s-study/blogram/wiki/%ED%9A%8C%EC%9D%98%EB%A1%9D)
+- 9월 21일 : 1차 회의
+- 10월 10일 : 2차 회의
+- 10월 24일 : 3차 회의
+- 11월 15일 : 4차 회의
