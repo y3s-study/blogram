@@ -1,5 +1,6 @@
 package org.blogram.domain.role;
 
+import lombok.Getter;
 import org.blogram.domain.common.BaseEntity;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Role extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id")
 	private Long id;
+	@Getter
 	private String name;
 
 	protected Role() {

@@ -26,7 +26,7 @@ public class Member extends BaseEntity {
 	private String password;
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name = "authority",
 			joinColumns = @JoinColumn(name = "member_id"),

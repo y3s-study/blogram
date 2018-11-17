@@ -7,6 +7,7 @@ import org.blogram.domain.role.Role;
 import org.blogram.repository.category.CategoryRepository;
 import org.blogram.repository.post.PostRepository;
 import org.blogram.repository.role.RoleRepository;
+import org.blogram.service.member.MemberDto;
 import org.blogram.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -45,7 +46,7 @@ public class InitialDataLoader implements ApplicationRunner {
 		Role adminRole = roleRepository.save(Role.create("ADMIN"));
 		Role userRole = roleRepository.save(Role.create("USER"));
 
-		Member admin = Member.builder().name("admin").email("admin@blogram.org").password("admin").birthDate(LocalDate.now()).build();
+        Member admin = Member.builder().name("admin").email("admin@blogram.org").password("admin").birthDate(LocalDate.now()).build();
 		admin.addRole(adminRole);
 		admin.addRole(userRole);
 
@@ -61,7 +62,8 @@ public class InitialDataLoader implements ApplicationRunner {
 		Category javaCategory = Category.create("java", user, programmingCategory);
 		categoryRepository.save(javaCategory);
 
-		Post testPost = Post.create("test post", "blah blah ~", user, javaCategory);
-		postRepository.save(testPost);
+		postRepository.save(Post.create("First post", "blah blah ~", user, javaCategory));
+		postRepository.save(Post.create("Second Post", "adsf asdf zxcv qwer", user, javaCategory));
+		postRepository.save(Post.create("Third Post", "adsf asdf zxcv qwer", admin, javaCategory));
 	}
 }
