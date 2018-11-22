@@ -28,4 +28,15 @@ public class PostService {
 				.map(PostDto::createFromEntity)
 				.collect(toList());
 	}
+
+	/**
+     * 내 포스트 정보 가져오기
+     */
+    public List<PostDto> getMemberPosts(String name) {
+        List<Post> memberPosts = postRepository.findByMemberName(name);
+
+        return asStream(memberPosts)
+                .map(PostDto::createFromEntity)
+                .collect(toList());
+    }
 }

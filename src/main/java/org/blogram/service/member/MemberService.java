@@ -1,20 +1,11 @@
 package org.blogram.service.member;
 
 import org.blogram.domain.member.Member;
-import org.blogram.domain.member.PostListRq;
-import org.blogram.domain.member.PostListRs;
 import org.blogram.repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,13 +40,4 @@ public class MemberService {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		return memberRepository.save(member);
 	}
-
-    /**
-     * 멤버 포스트 정보 가져오기
-     **/
-    public PostListRs postList(PostListRq postListRq) {
-        PostListRs postListRs = new PostListRs();
-
-        return postListRs;
-    }
 }
