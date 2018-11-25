@@ -44,7 +44,7 @@ public class MemberService {
 
     @Transactional
     public Long save(MemberRequestDto memberRequestDto) {
-		verifyDuplicateEmail(memberRequestDto.getEmail());
+		verifyDuplicate(memberRequestDto);
         Member member = new Member();
         member.setName(memberRequestDto.getName());
         member.setEmail(memberRequestDto.getEmail());
@@ -62,9 +62,20 @@ public class MemberService {
 				.collect(Collectors.toList());
 	}
 
-	private void verifyDuplicateEmail(String email){
+	private void verifyDuplicate(MemberRequestDto memberRequestDto) {
+	    verifyDuplicateName(memberRequestDto.getName());
+	    verifyDuplicateEmail(memberRequestDto.getEmail());
+    }
+
+	private void verifyDuplicateEmail(String email) {
 		if(memberRepository.findByEmail(email).isPresent()){
 			throw new ValidCustomException("이미 사용중인 이메일주소입니다", "email");
 		}
 	}
+
+	private void verifyDuplicateName(String name) {
+	    if(memberRepository.findByName(name).isPresent()){
+	        throw new ValidCustomException("이미 사용중인 아이디입니다", "name");
+        }
+    }
 }
