@@ -16,6 +16,10 @@
             <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요">
         </div>
         <div class="form-group">
+            <label for="passwordCheck"> 비밀번호 재확인</label>
+            <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="form-group">
             <label for="birthDate"> 생일 </label>
             <input type="date" class="/form-control" id="birthDate" placeholder="생일을 입력하세요">
         </div>
@@ -27,6 +31,14 @@
 {{#partial "customScript"}}
     <script type="application/javascript">
         $('#btnSave').click(function () {
+            var pw = $('#password').val();
+            var pwCheck = $('#passwordCheck').val();
+            if(pw != pwCheck) {
+                $('#passwordCheck').siblings('.error-message').remove();
+                $('#passwordCheck').after('<span class="error-message text-muted text-small text-danger">'+'비밀번호가 다릅니다.'+'</span>')
+                return;
+            }
+
             var member = {
                 name: $('#name').val(),
                 email: $('#email').val(),
