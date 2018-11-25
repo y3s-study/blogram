@@ -44,6 +44,7 @@ public class MemberService {
 
     @Transactional
     public Long save(MemberRequestDto memberRequestDto) {
+		verifyDuplicateEmail(memberRequestDto.getEmail());
         Member member = new Member();
         member.setName(memberRequestDto.getName());
         member.setEmail(memberRequestDto.getEmail());
@@ -61,4 +62,9 @@ public class MemberService {
 				.collect(Collectors.toList());
 	}
 
+	private void verifyDuplicateEmail(String email){
+		if(memberRepository.findByEmail(email).isPresent()){
+			throw new ValidCustomException("이미 사용중인 이메일주소입니다", "email");
+		}
+	}
 }
