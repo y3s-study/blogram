@@ -46,7 +46,7 @@
                 birthDate: $('#birthDate').val()
             };
             $.ajax({
-                url:'/member/register',
+                url:'/register',
                 method: 'POST',
                 data: JSON.stringify(member),
                 contentType: "application/json; charset=utf-8",

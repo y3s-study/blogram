@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,12 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByName(username).orElse(null);
-
-        List<GrantedAuthority> authorities = member.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-
-        return new User(member.getName(), member.getPassword(), authorities);
+        Optional<Member> member = memberRepository.findByName(username);
+        return member.map(m -> {
+            List<GrantedAuthority> authorities = m.getRoles().stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getName()))
+                    .collect(Collectors.toList());
+            return new User(m.getName(), m.getPassword(), authorities);
+        }).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }
