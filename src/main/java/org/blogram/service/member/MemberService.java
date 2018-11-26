@@ -2,6 +2,7 @@ package org.blogram.service.member;
 
 import org.blogram.domain.member.Member;
 import org.blogram.repository.member.MemberRepository;
+import org.blogram.service.ValidCustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

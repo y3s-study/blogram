@@ -1,6 +1,6 @@
 package org.blogram.configuration;
 
-import org.blogram.service.member.ValidCustomException;
+import org.blogram.service.ValidCustomException;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +24,7 @@ public class MvcConfig implements WebMvcConfigurer {
         return new DefaultErrorAttributes() {
 
             @Override
-            public Map<String, Object> getErrorAttributes(
-                    WebRequest request,
-                    boolean includeStackTrace) {
+            public Map<String, Object> getErrorAttributes(WebRequest request, boolean includeStackTrace) {
                 Map<String, Object> errorAttributes = super.getErrorAttributes(request, includeStackTrace);
                 Throwable error = getError(request);
                 if (error instanceof ValidCustomException) {
