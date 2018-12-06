@@ -5,9 +5,9 @@ import org.blogram.domain.member.Member;
 import org.blogram.domain.post.Post;
 import org.blogram.domain.role.Role;
 import org.blogram.repository.category.CategoryRepository;
+import org.blogram.repository.member.MemberRepository;
 import org.blogram.repository.post.PostRepository;
 import org.blogram.repository.role.RoleRepository;
-import org.blogram.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,15 +25,15 @@ public class InitialDataLoader implements ApplicationRunner {
 	private final RoleRepository roleRepository;
 	private final PostRepository postRepository;
 	private final CategoryRepository categoryRepository;
-	private final MemberService memberService;
+	private final MemberRepository memberRepository;
 
 	@Autowired
 	public InitialDataLoader(RoleRepository roleRepository, PostRepository postRepository,
-	                         CategoryRepository categoryRepository, MemberService memberService) {
+	                         CategoryRepository categoryRepository, MemberRepository memberRepository) {
 		this.roleRepository = roleRepository;
 		this.postRepository = postRepository;
 		this.categoryRepository = categoryRepository;
-		this.memberService = memberService;
+		this.memberRepository = memberRepository;
 	}
 
 	@Override
@@ -45,15 +45,25 @@ public class InitialDataLoader implements ApplicationRunner {
 		Role adminRole = roleRepository.save(Role.create("ADMIN"));
 		Role userRole = roleRepository.save(Role.create("USER"));
 
-        Member admin = Member.builder().name("admin").email("admin@blogram.org").password("admin").birthDate(LocalDate.now()).build();
+        Member admin = Member.builder()
+		        .name("admin")
+		        .email("admin@blogram.org")
+		        .password("{bcrypt}$2a$10$9O/fZIW6GwcTTpyZjNRtLucJrLTGCLMDOJ0ioCZVYhQ4NMFPmO5jm")
+		        .birthDate(LocalDate.now())
+		        .build();
 		admin.addRole(adminRole);
 		admin.addRole(userRole);
 
-		Member user = Member.builder().name("user").email("user@blogram.org").password("user").birthDate(LocalDate.now()).build();
+		Member user = Member.builder()
+				.name("user")
+				.email("user@blogram.org")
+				.password("{bcrypt}$2a$10$UupIyjwWPlZQzOZBZQo3lerUiDctVIUb.C6/a9iLDt2b51dyHiLUO")
+				.birthDate(LocalDate.now())
+				.build();
 		user.addRole(userRole);
 
-		memberService.save(admin);
-		memberService.save(user);
+		memberRepository.save(admin);
+		memberRepository.save(user);
 
 		Category programmingCategory = Category.create("programming", user, null);
 		categoryRepository.save(programmingCategory);
