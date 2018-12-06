@@ -2,11 +2,12 @@
     <div class="container">
         <a href="/" class="navbar-brand h1">Blogram</a>
 
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" name="logoutForm" action="/logout" method="post">
             {{#if loginUser}}
                 <span class="mr-sm-2">{{loginUser.name}}</span>
                 <span class="mr-sm-2"><a href="/member/profile">MyPage</a></span>
-                <a class="btn btn-primary text-white my-2 my-sm-0" href="/#">Logout</a>
+                <input class="btn btn-primary" type="submit" value="Logout"/>
+                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
             {{else}}
                 <a class="btn btn-primary text-white my-2 my-sm-0" href="/login">Login</a>
                 <a class="nav-link" href="/join">Sign up</a>
