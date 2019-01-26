@@ -1,0 +1,85 @@
+
+{{#partial "body"}}
+<div class="col-md-6">
+    <h1> 회원가입 </h1>
+    <form>
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="text" class="form-control" id="email" placeholder="이메일을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="password"> 비밀번호 </label>
+            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="passwordCheck"> 비밀번호 재확인</label>
+            <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="birthDate"> 생일 </label>
+            <input type="date" class="/form-control" id="birthDate" placeholder="생일을 입력하세요">
+        </div>
+        <button type="button" class="btn btn-primary" id="btnSave">등록</button>
+    </form>
+</div>
+{{/partial}}
+
+{{#partial "customScript"}}
+    <script type="application/javascript">
+        $('#btnSave').click(function () {
+            var pw = $('#password').val();
+            var pwCheck = $('#passwordCheck').val();
+            if(pw != pwCheck) {
+                $('#passwordCheck').siblings('.error-message').remove();
+                $('#passwordCheck').after('<span class="error-message text-muted text-small text-danger">'+'비밀번호가 다릅니다.'+'</span>')
+                return;
+            }
+
+            var member = {
+                name: $('#name').val(),
+                email: $('#email').val(),
+                password: $('#password').val(),
+                birthDate: $('#birthDate').val()
+            };
+            $.ajax({
+                url:'/register',
+                method: 'POST',
+                data: JSON.stringify(member),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    location.href='/'
+                },
+                error: function (response) {
+                   markingErrorField(response);
+                }
+
+            });
+        });
+
+        var markingErrorField = function (response) {
+            const errorFields = response.responseJSON.errors;
+
+            if(!errorFields){
+                alert(response.response.message);
+                return;
+            }
+
+            var $field, error;
+            for(var i=0, length = errorFields.length; i<length;i++){
+                error = errorFields[i];
+                $field = $('#'+error['field']);
+
+                if($field && $field.length > 0){
+                    $field.siblings('.error-message').remove();
+                    $field.after('<span class="error-message text-muted text-small text-danger">'+error.defaultMessage+'</span>');
+                }
+            }
+        };
+    </script>
+{{/partial}}
+
+{{> layout}}
