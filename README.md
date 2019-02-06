@@ -1,4 +1,6 @@
 # blogram
+[![Build Status](https://travis-ci.org/y3s-study/blogram.svg?branch=master)](https://travis-ci.org/y3s-study/blogram)
+
 스프링부트 기반의 블로그 + 인스타그램 프로젝트
 
 ## 기능
