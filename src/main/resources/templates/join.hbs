@@ -33,8 +33,10 @@
         $('#btnSave').click(function () {
             var pw = $('#password').val();
             var pwCheck = $('#passwordCheck').val();
+
+            initErrorMessages();
+
             if(pw != pwCheck) {
-                $('#passwordCheck').siblings('.error-message').remove();
                 $('#passwordCheck').after('<span class="error-message text-muted text-small text-danger">'+'비밀번호가 다릅니다.'+'</span>')
                 return;
             }
@@ -74,11 +76,17 @@
                 $field = $('#'+error['field']);
 
                 if($field && $field.length > 0){
-                    $field.siblings('.error-message').remove();
                     $field.after('<span class="error-message text-muted text-small text-danger">'+error.defaultMessage+'</span>');
                 }
             }
         };
+
+        var initErrorMessages = function() {
+            $('#name').siblings('.error-message').remove();
+            $('#email').siblings('.error-message').remove();
+            $('#passwordCheck').siblings('.error-message').remove();
+        }
+
     </script>
 {{/partial}}
 
