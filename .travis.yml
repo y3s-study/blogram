@@ -1,0 +1,12 @@
+language: java
+jdk: oraclejdk8
+
+# clean 후 build를 수행(build를 하면 test도 수행된다)
+script: "./gradlew clean build"
+
+# build, test가 끝나면 test coverage를 coveralls로 전송
+after_success:
+- ./gradlew jacocoTestReport coveralls
+
+notifications:
+  slack: y3s-study:jxifYL3NC4gHiSMIvoDOxn03
