@@ -51,7 +51,7 @@ public class PostService {
 
     @Transactional
     public long save(PostSaveRequestDto postSaveRequestDto) {
-        Member user = memberRepository.findByName(postSaveRequestDto.getMember());
+        Member user = memberRepository.findByName(postSaveRequestDto.getMember()).orElse(new Member());
         Category category = categoryRepository.findByName(postSaveRequestDto.getCategory());
 
         Post post = Post.create(postSaveRequestDto.getTitle(), postSaveRequestDto.getContent(), user, category);
