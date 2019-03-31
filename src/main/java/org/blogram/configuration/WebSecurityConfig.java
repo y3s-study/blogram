@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers("/", "/index", "/static/**", "/join", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
