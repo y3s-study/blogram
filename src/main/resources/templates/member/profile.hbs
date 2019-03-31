@@ -1,0 +1,21 @@
+{{#partial "header"}}
+    {{> common/navigationBar}}
+{{/partial}}
+
+{{#partial "body"}}
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="nav flex-column nav-pills" id="sidebar" role="tablist">
+                <a class="nav-link active" id="my-post-tab" href="/member/profile">나의 포스트</a>
+                <a class="nav-link" id="change-password-tab" href="/member/change-password">비밀번호 변경</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            {{> member/profilePost/profileList}}
+        </div>
+    </div>
+
+{{/partial}}
+
+{{> layout}}

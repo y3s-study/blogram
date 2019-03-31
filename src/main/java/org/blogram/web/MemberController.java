@@ -14,22 +14,20 @@ import java.util.List;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    private static final String VIEW = "/member";
+    private static final String MEMBER_VIEW_ROOT = "/member";
+
+    private final PostService postService;
 
     @Autowired
-    private PostService postService;
+    public MemberController(PostService postService) {
+        this.postService = postService;
+    }
 
-    /**
-     * 프로필 페이지 이동
-     * 회원
-     * > 정보
-     * > 포스트
-     **/
     @GetMapping("/profile")
     public String profile(Model model, Principal principal) {
         List<PostDto> memberPosts = postService.getMemberPosts(principal.getName());
         model.addAttribute("loginUser", principal);
         model.addAttribute("memberPosts", memberPosts);
-        return VIEW + "/home";
+        return MEMBER_VIEW_ROOT + "/profile";
     }
 }
