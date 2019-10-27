@@ -16,3 +16,5 @@ script: "./gradlew clean build"
 
 notifications:
   slack: y3s-study:Fg3lMdpau4xFwXf7DhdHr0sY
+
+dist: trusty
