@@ -55,6 +55,7 @@ public class PostService {
         Category category = categoryRepository.findByName(postSaveRequestDto.getCategory());
 
         Post post = Post.create(postSaveRequestDto.getTitle(), postSaveRequestDto.getContent(), user, category);
+
         return postRepository.save(post).getId();
     }
 }

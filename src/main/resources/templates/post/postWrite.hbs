@@ -22,6 +22,7 @@
                         <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
                     </div>
                     <div class="form-group">
+                        <!-- To-do : 카테고리 자동완성 기능 개발 -->
                         <label for="category"> 카테고리 </label>
                         <input type="text" class="form-control" id="category" placeholder="카테고리를 입력하세요">
                     </div>
@@ -38,3 +39,42 @@
         </div>
     </div>
 </div>
+
+{{#partial "customScript"}}
+    <script type="application/javascript">
+        $('#btnSave').click(function () {
+            var title = $('#title').val();
+            var category = $('#category').val();
+            var content = $('#content').val();
+
+            initErrorMessages();
+
+            var post = {
+                title: $('#title').val(),
+                category: $('#category').val(),
+                content: $('#content').val()
+            };
+
+            $.ajax({
+                url: '/postMakeUp',
+                method: 'POST',
+                data: JSON.stringify(post),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    location.href = '/'
+                },
+                error: function (response) {
+                    // To-do : 에러 처리 개발 해야됨
+                    // markingErrorField(response);
+                }
+
+            });
+        });
+
+        var initErrorMessages = function () {
+            $('#title').siblings('.error-message').remove();
+            $('#category').siblings('.error-message').remove();
+            $('#content').siblings('.error-message').remove();
+        }
+    </script>
+{{/partial}}
